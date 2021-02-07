@@ -2,9 +2,11 @@
 <ul>
   {% for message in message_list %}
   <li>
-    <span> {{message.formatted_date}}</span>
-    <a href="">{{message.message_title}} </a>
-    <div>Votes: {{message.votes}} || Comments: {{message.comments_num}}</div>
+    <span> {{message.formatted_date}} -- </span>
+    <a href="{% url 'linker:message_detail' message.id %}"
+      >{{message.message_title}}
+    </a>
+    <div>Votes: {{message.votes}} | Comments: {{message.comments_num}}</div>
   </li>
   {%endfor%}
 </ul>
