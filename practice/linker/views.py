@@ -11,3 +11,7 @@ def contact(request):
 
 def about(request):
     return HttpResponse("Find out more about me.")
+
+
+def page_not_found_view(request, exception=None):
+    return HttpResponse("Wrong page.", status=404)
