@@ -1,8 +1,13 @@
 from django.http import HttpResponse
+from .models import Message, Comment
+from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Welcome to the homepage.")
+    message_list = Message.objects.all()
+
+    context = {"message_list": message_list}
+    return render(request, "linker/index.html", context)
 
 
 def contact(request):
