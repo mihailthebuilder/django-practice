@@ -4,7 +4,21 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    message_list = Message.objects.all()
+
+    messages = Message.objects.all()
+    comments = Comment.objects.all()
+
+    message_list = list(
+        map(
+            lambda message: {
+                "message_title": message.message_title,
+                "formatted_date": message.formatted_date,
+                "votes": message.votes,
+                "comments_num": len(comments.filter(message=message)),
+            },
+            messages,
+        )
+    )
 
     context = {"message_list": message_list}
     return render(request, "linker/index.html", context)

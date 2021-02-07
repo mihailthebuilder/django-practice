@@ -2,9 +2,9 @@
 <ul>
   {% for message in message_list %}
   <li>
-    <span> {{message.pub_date}}</span>
+    <span> {{message.formatted_date}}</span>
     <a href="">{{message.message_title}} </a>
-    <div>Votes: {{message.votes}}</div>
+    <div>Votes: {{message.votes}} || Comments: {{message.comments_num}}</div>
   </li>
   {%endfor%}
 </ul>
