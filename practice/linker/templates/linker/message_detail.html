@@ -1,10 +1,10 @@
 <div>{{message.formatted_date}}</div>
 <h1>{{message.message_title}}</h1>
 <p>{{message.text_content}}</p>
-<div>Votes: {{message.votes}} | Comments: {{len(message.comments)}}</div>
-{% if message.comments %}
+<div>Votes: {{message.votes}} | Comments: {{comments_num}}</div>
+{% if comments_num > 0 %}
 <ul>
-  {%for comment in message.comments%}
+  {%for comment in comments%}
   <li>
     <p>{{comment.text_content}}</p>
     <div>{{comment.formatted_date}} | {{comment.votes}} votes</div>

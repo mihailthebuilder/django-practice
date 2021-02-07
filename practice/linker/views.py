@@ -32,6 +32,7 @@ def message_detail(request, message_id):
     context = {
         "message": message,
         "comments": comments,
+        "comments_num": len(comments),
     }
 
     return render(request, "linker/message_detail.html", context)
