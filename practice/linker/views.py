@@ -1,7 +1,7 @@
-from django.http import HttpResponse
-from .models import Message, Comment
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Message
 from django.views import generic
+from django.urls import reverse
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -32,6 +32,15 @@ class MessageView(generic.DetailView):
         context["comments"] = context["message"].comment_set.all()
         context["comments_num"] = len(context["comments"])
         return context
+
+
+def add_message(request):
+    message = Message(
+        message_title=request.POST["message_title"],
+        text_content=request.POST["message_text"],
+    )
+    message.save()
+    return HttpResponseRedirect(reverse("linker:index"))
 
 
 def contact(request):
