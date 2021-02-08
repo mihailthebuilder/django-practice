@@ -10,7 +10,8 @@ class CommonTextModel(models.Model):
 
     def save(self, *args, **kwargs):
         """on save, update timestamp"""
-        self.pub_date = timezone.now()
+        if not self.id:
+            self.pub_date = timezone.now()
         self.formatted_date = self.pub_date.strftime("%d/%m/%Y | %H:%M")
         return super(CommonTextModel, self).save(*args, **kwargs)
 
