@@ -9,6 +9,7 @@ urlpatterns = [
     path(
         "message/<int:message_id>/add_comment/", views.add_comment, name="add_comment"
     ),
+    path("message/<int:message_id>/vote/", views.vote, name="vote"),
     path("contact/", views.contact, name="contact"),
     path("about/", views.about, name="about"),
     path("message/<int:pk>/", views.MessageView.as_view(), name="message_detail"),

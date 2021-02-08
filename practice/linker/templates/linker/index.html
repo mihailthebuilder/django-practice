@@ -10,6 +10,11 @@
       </a>
       <div>Votes: {{message.votes}} | Comments: {{message.comments_num}}</div>
     </li>
+    <form action="{% url 'linker:vote' message.id%}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="upvote">Upvote</button>
+      <button type="submit" name="downvote">Downvote</button>
+    </form>
     {%endfor%}
   </ul>
   {%endif%}

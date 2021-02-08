@@ -51,6 +51,17 @@ def add_comment(request, message_id):
     return HttpResponseRedirect(reverse("linker:message_detail", args=(message.id,)))
 
 
+def vote(request, message_id):
+    message = get_object_or_404(Message, pk=message_id)
+    if "upvote" in request.POST:
+        message.votes += 1
+    elif "downvote" in request.POST:
+        message.votes -= 1
+    message.save()
+
+    return HttpResponseRedirect(reverse("linker:index"))
+
+
 def contact(request):
     return HttpResponse("Contact me here.")
 
