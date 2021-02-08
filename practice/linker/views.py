@@ -23,17 +23,15 @@ class IndexView(generic.ListView):
         )
 
 
-def message_detail(request, message_id):
-    message = get_object_or_404(Message, pk=message_id)
-    comments = Comment.objects.all().filter(message=message)
+class MessageView(generic.DetailView):
+    template_name = "linker/message_detail.html"
+    model = Message
 
-    context = {
-        "message": message,
-        "comments": comments,
-        "comments_num": len(comments),
-    }
-
-    return render(request, "linker/message_detail.html", context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comments"] = context["message"].comment_set.all()
+        context["comments_num"] = len(context["comments"])
+        return context
 
 
 def contact(request):
