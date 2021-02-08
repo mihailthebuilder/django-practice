@@ -5,7 +5,7 @@ from django.utils import timezone
 class CommonTextModel(models.Model):
     text_content = models.TextField()
     pub_date = models.DateTimeField("date published", blank=True)
-    votes = models.PositiveSmallIntegerField(default=0)
+    votes = models.SmallIntegerField(default=0)
     formatted_date = models.CharField(max_length=40, blank=True)
 
     def save(self, *args, **kwargs):
